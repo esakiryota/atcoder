@@ -27,7 +27,6 @@ int main() {
   string name = "";
   for (ll i = m; i > 0; i--) {
     ll syo = n/powmod(jo, i);
-    syo--;
     char part = word.at(syo);
     name += part;
     n = n%powmod(jo, i);

@@ -5,14 +5,6 @@
 using namespace std;
 typedef long long ll;
 
-ll powmod(ll x, ll y) {
-  ll res = 1;
-  for (ll i=0; i<y; i++) {
-    res=res*x;
-  }
-  return res;
-}
-
 int main() {
   ll n;
   cin >> n;
