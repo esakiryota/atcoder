@@ -2,24 +2,14 @@
 #include<iostream>
 #include <vector>
 using namespace std;
-
-bool check(vector<int> a, int x) {
-	bool judge = true;
-	for (int p = 0; p < a.size(); p++){
-		if (a[p] < x) {
-			// cout << a[p] << endl;
-			judge = false;
-		}
-	}
-	return judge;
-}
-
+const int INF = 1001001001;
+//m, nややこしいからきちんと手計算であっているか確認！
+int v[12][12];
 
 int main(){
 	int n, m, x;
 	cin >> n >> m >> x;
-  vector<vector<int> > v(n,vector<int>(m));
-	vector<int>c(m);
+	vector<int>c(n);
 	for (int i = 0; i < n; i++) {
 		cin>>c[i];
 		for (int j=0; j < m; j++) {
@@ -28,23 +18,28 @@ int main(){
 	}
 
 
-int ans = 1000000007;
+int ans = INF;
 
 for (int i = 0; i<(1<<n); i++){
-	vector<int> sum(n);
+	vector<int> sum(m);
 	int sum_c = 0;
-	for (int k=0; k < m; k++) {
 	for (int j=0; j < n; j++) {
 		if (i & (1<<j)){
-				sum[k] += v[k][j];
-				sum_c += c[j];
+			sum_c += c[j];
+			for (int k=0; k < m; k++) {
+				sum[k] += v[j][k];
 			}
 		}
 	}
-	for (int f = 0; f < sum.size(); f++) cout << sum[f] << endl;
-	if (check(sum, x)) {
-		ans = min(ans, sum_c);
+	bool judge = true;
+	for (int p = 0; p < m; p++){
+		if (sum[p] < x) {
+			judge = false;
+		}
 	}
+	if(judge) ans = min(ans, sum_c);
 }
-cout << ans << endl;
+if (ans == INF) cout << -1 << endl;
+else cout << ans << endl;
+return 0;
 }
