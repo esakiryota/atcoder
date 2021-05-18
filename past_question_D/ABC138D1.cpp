@@ -11,7 +11,6 @@ using namespace std;
 const int INF = 1001001001;
 typedef long long ll;
 typedef pair<int, int> P;
-//木のときはdfsのほうが良い
 
 struct Edge {
   int to, id;
